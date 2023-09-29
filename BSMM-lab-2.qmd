@@ -199,26 +199,6 @@ The artist with the tenth most works in the Tate collection is Warhol, Andy.
 ### Exercise 4
 
 ```{r}
-library(gt)
-library(gtExtras)
-
-# Display the table using gt with appropriate formatting
-artist_table <- works_per_artist_sorted %>%
-  gt() %>%
-  fmt_number(
-    columns = vars(percentage_total),
-    decimals = 2
-  ) %>%
-  tab_spanner(
-    label = "Percentage of Total Collection",
-    columns = vars(percentage_total)
-  ) %>%
-  
-print("Table showing the number of works and the percentage of the total collection for each unique artist:")
-print(artist_table)
-```
-
-```{r}
 # Calculate the total number of artworks in the collection
 total_artworks <- nrow(the_tate)
 
@@ -251,15 +231,14 @@ count_rows <- the_tate %>%
 count_duplicates <- the_tate %>%
   select(artist, title) %>%
   distinct() %>%
-  count() %>%
+  count()
 
-print("Count of rows for each artist-title pair:")
-print(count_rows)
+# Print the count of distinct artist-title pairs and the number of duplicated pairs
 print("Count of distinct artist-title pairs and the number of duplicated pairs:")
 print(count_duplicates)
 ```
 
-There are 45496 duplicate artist-title pairs.
+There are 2869 duplicate artist-title pairs.
 
 ### Exercise 6
 
